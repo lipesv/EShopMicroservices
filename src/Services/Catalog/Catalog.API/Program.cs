@@ -18,7 +18,7 @@ builder.Services.AddCarter();
 
 builder.Services.AddMarten(opts =>
 {
-    opts.Connection(Environment.GetEnvironmentVariable("ConnectionStrings__Database"));          // builder.Configuration.GetConnectionString("Database")!
+    opts.Connection(Environment.GetEnvironmentVariable("ConnectionStrings__Database")!);          // builder.Configuration.GetConnectionString("Database")!
 }).UseLightweightSessions();
 
 if (builder.Environment.IsDevelopment())
@@ -29,7 +29,7 @@ if (builder.Environment.IsDevelopment())
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 builder.Services.AddHealthChecks()
-                .AddNpgSql(Environment.GetEnvironmentVariable("ConnectionStrings__Database"));   // builder.Configuration.GetConnectionString("Database")!
+                .AddNpgSql(Environment.GetEnvironmentVariable("ConnectionStrings__Database")!);   // builder.Configuration.GetConnectionString("Database")!
 
 var app = builder.Build();
 
