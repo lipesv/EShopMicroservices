@@ -1,0 +1,26 @@
+name: PR Template Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-pr-template:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Verify PR template
+        run: |
+          if [[ ${{ github.base_ref }} == 'main' ]]; then
+            if [[ ${{ github.head_ref }} == 'develop' ]]; then
+              echo "Feature PR template used."
+            elif [[ ${{ github.head_ref }} == bug/* ]]; then
+              echo "Bugfix PR template used."
+            else
+              echo "Invalid PR source branch. PRs to main must come from develop or a bugfix branch."
+              exit 1
+            fi
+          fi
