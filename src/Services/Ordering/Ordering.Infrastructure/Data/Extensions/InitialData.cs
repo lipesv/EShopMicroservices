@@ -35,8 +35,8 @@ internal class InitialData
                                       billingAddress: address2,
                                       payment1);
 
-            order1.Add(ProductId.Of(new Guid("ca13159c-4e44-43a6-8e1d-8446350effea")), 500, 2);
-            order1.Add(ProductId.Of(new Guid("380b65b9-5a21-4c04-abd9-be217453e961")), 400, 1);
+            order1.Add(ProductId.Of(new Guid("ca13159c-4e44-43a6-8e1d-8446350effea")), 2, 500);
+            order1.Add(ProductId.Of(new Guid("380b65b9-5a21-4c04-abd9-be217453e961")), 1, 400);
 
             var order2 = Order.Create(OrderId.Of(Guid.NewGuid()),
                                       CustomerId.Of(new Guid("8c02d60a-c58f-41bb-9007-f76626ef18b9")),
@@ -45,8 +45,8 @@ internal class InitialData
                                       billingAddress: address2,
                                       payment2);
 
-            order2.Add(ProductId.Of(new Guid("2c357e1e-8342-4f07-ad17-4a27b559d282")), 650, 1);
-            order2.Add(ProductId.Of(new Guid("a48aa87b-75af-4d00-a8d8-be2a01a08070")), 450, 2);
+            order2.Add(ProductId.Of(new Guid("2c357e1e-8342-4f07-ad17-4a27b559d282")), 1, 650);
+            order2.Add(ProductId.Of(new Guid("a48aa87b-75af-4d00-a8d8-be2a01a08070")), 2, 450);
 
             return new List<Order> { order1, order2 };
         }
