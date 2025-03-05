@@ -43,6 +43,20 @@ services:
       interval: 10s
       timeout: 3s
       retries: 5
+  
+  orderdb:
+    container_name: orderdb
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Lype@1824
+    restart: always
+    ports:
+      - "1433:1433"
+    # healthcheck:
+    #   test: [ "CMD", "sqlcmd", "-U", "sa", "-P", "Lype@1824", "-Q", "SELECT 1" ]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
 
   catalog.api:
     container_name: catalog.api
