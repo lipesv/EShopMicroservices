@@ -1,0 +1,90 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Catalog API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build and up Catalog API",
+      "program": "${workspaceFolder}/Services/Catalog/Catalog.API/bin/Debug/net8.0/Catalog.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Services/Catalog/Catalog.API",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Services/Catalog/Catalog.API/Views"
+      }
+    },
+    {
+      "name": "Launch Basket API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build and up Basket API",
+      "program": "${workspaceFolder}/Services/Basket/Basket.API/bin/Debug/net8.0/Basket.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Services/Basket/Basket.API",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Services/Basket/Basket.API/Views"
+      }
+    },
+    {
+      "name": "Launch Ordering API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build and up Ordering API",
+      "program": "${workspaceFolder}/Services/Ordering/Ordering.API/bin/Debug/net8.0/Ordering.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Services/Ordering/Ordering.API",
+      "stopAtEntry": false,
+      // "serverReadyAction": {
+      //   "action": "openExternally",
+      //   "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      // },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Services/Ordering/Ordering.API/Views"
+      }
+    },
+    {
+      "name": ".NET Core Launch (web)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Services/Basket/Basket.API/bin/Debug/net8.0/Basket.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Services/Basket/Basket.API",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach"
+    }
+  ]
+}
