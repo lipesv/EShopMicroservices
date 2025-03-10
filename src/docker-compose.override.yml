@@ -52,11 +52,23 @@ services:
     restart: always
     ports:
       - "1433:1433"
-    # healthcheck:
-    #   test: [ "CMD", "sqlcmd", "-U", "sa", "-P", "Lype@1824", "-Q", "SELECT 1" ]
-    #   interval: 10s
-    #   timeout: 5s
-    #   retries: 5
+    healthcheck:
+      test: [ "CMD", "sqlcmd", "-U", "sa", "-P", "Lype@1824", "-Q", "SELECT 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  messagebroker:
+    container_name: messagebroker
+    hostname: ecommerce-mq
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=SWQOKODSQALRPCLNMEQG
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    restart: always
+    ports:
+      - "5672:5672" 
+      - "15672:15672"
 
   catalog.api:
     container_name: catalog.api
