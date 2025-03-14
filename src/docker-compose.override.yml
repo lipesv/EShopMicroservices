@@ -43,7 +43,7 @@ services:
       interval: 10s
       timeout: 3s
       retries: 5
-  
+
   orderdb:
     container_name: orderdb
     environment:
@@ -67,13 +67,13 @@ services:
       - RABBITMQ_DEFAULT_PASS=guest
     restart: always
     ports:
-      - "5672:5672" 
+      - "5672:5672"
       - "15672:15672"
     healthcheck:
-        test: [ "CMD", "rabbitmqctl", "node_health_check" ]
-        interval: 10s
-        timeout: 5s
-        retries: 5 
+      test: [ "CMD", "rabbitmqctl", "node_health_check" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   catalog.api:
     container_name: catalog.api
@@ -102,7 +102,7 @@ services:
       - GrpcConfigs__DiscountUrl=https://discount.grpc:8081
       - MessageBroker__Host=amqp://ecommerce-mq:5672
       - MessageBroker__User=guest
-      - MessageBroker__Password=guest 
+      - MessageBroker__Password=guest
     depends_on:
       basketdb:
         condition: service_healthy
@@ -160,6 +160,23 @@ services:
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
+  yarpapigateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+    ports:
+      - "6004:8080"
+      - "6064:8081"
+    depends_on:
+      - catalog.api
+      - basket.api
+      - ordering.api
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 volumes:
   postgres_catalog:
   postgres_basket:
