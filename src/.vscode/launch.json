@@ -5,15 +5,11 @@
       "name": "Launch Catalog API",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "build and up Catalog API",
+      "preLaunchTask": "launch up Catalog API with micro services",
       "program": "${workspaceFolder}/Services/Catalog/Catalog.API/bin/Debug/net8.0/Catalog.API.dll",
       "args": [],
       "cwd": "${workspaceFolder}/Services/Catalog/Catalog.API",
       "stopAtEntry": false,
-      "serverReadyAction": {
-        "action": "openExternally",
-        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-      },
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -25,15 +21,11 @@
       "name": "Launch Basket API",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "build and up Basket API",
+      "preLaunchTask": "launch up Basket API with micro services",
       "program": "${workspaceFolder}/Services/Basket/Basket.API/bin/Debug/net8.0/Basket.API.dll",
       "args": [],
       "cwd": "${workspaceFolder}/Services/Basket/Basket.API",
       "stopAtEntry": false,
-      "serverReadyAction": {
-        "action": "openExternally",
-        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-      },
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -45,15 +37,11 @@
       "name": "Launch Ordering API",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "build and up Ordering API",
+      "preLaunchTask": "launch up Ordering API with micro services",
       "program": "${workspaceFolder}/Services/Ordering/Ordering.API/bin/Debug/net8.0/Ordering.API.dll",
       "args": [],
       "cwd": "${workspaceFolder}/Services/Ordering/Ordering.API",
       "stopAtEntry": false,
-      // "serverReadyAction": {
-      //   "action": "openExternally",
-      //   "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-      // },
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -62,29 +50,29 @@
       }
     },
     {
-      "name": ".NET Core Launch (web)",
+      "name": "Launch YarpApiGateway",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "build",
-      "program": "${workspaceFolder}/Services/Basket/Basket.API/bin/Debug/net8.0/Basket.API.dll",
+      "preLaunchTask": "build YarpApiGateway",
+      "program": "${workspaceFolder}/ApiGateways/YarpApiGateway/bin/Debug/net8.0/YarpApiGateway.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/Services/Basket/Basket.API",
+      "cwd": "${workspaceFolder}/ApiGateways/YarpApiGateway",
       "stopAtEntry": false,
-      "serverReadyAction": {
-        "action": "openExternally",
-        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-      },
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "sourceFileMap": {
-        "/Views": "${workspaceFolder}/Views"
+        "/Views": "${workspaceFolder}/ApiGateways/YarpApiGateway/Views"
       }
     },
     {
-      "name": ".NET Core Attach",
-      "type": "coreclr",
-      "request": "attach"
+      "name": "Docker .NET Launch",
+      "type": "docker",
+      "request": "launch",
+      "preLaunchTask": "docker-run: debug",
+      "netCore": {
+        "appProject": "${workspaceFolder}/ApiGateways/YarpApiGateway/YarpApiGateway.csproj"
+      }
     }
   ]
 }
