@@ -1,182 +1,297 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "build Catalog API",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "build",
-        "${workspaceFolder}/Services/Catalog/Catalog.API/Catalog.API.csproj"
-      ],
-      "problemMatcher": "$msCompile",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
-    },
-    {
-      "label": "build Basket API",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "build",
-        "${workspaceFolder}/Services/Basket/Basket.API/Basket.API.csproj"
-      ],
-      "problemMatcher": "$msCompile",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
-    },
-    {
-      "label": "build Ordering API",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "build",
-        "${workspaceFolder}/Services/Ordering/Ordering.API/Ordering.API.csproj"
-      ],
-      "problemMatcher": "$msCompile",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
-    },
-    {
-      "label": "Docker Compose Build",
-      "type": "shell",
-      "command": "docker-compose",
-      "args": [
-        "-f",
-        "docker-compose.yml",
-        "-f",
-        "docker-compose.override.yml",
-        "build"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Docker Compose Up",
-      "type": "shell",
-      "command": "docker-compose",
-      "args": [
-        "-f",
-        "docker-compose.yml",
-        "-f",
-        "docker-compose.override.yml",
-        "up",
-        "-d"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": false
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Docker Compose Down",
-      "type": "shell",
-      "command": "docker-compose",
-      "args": [
-        "-f",
-        "docker-compose.yml",
-        "-f",
-        "docker-compose.override.yml",
-        "down"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": false
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Remove All Containers",
-      "type": "shell",
-      "command": "docker",
-      "args": ["rm", "$(docker", "ps", "-a", "-q)"],
-      "group": {
-        "kind": "build",
-        "isDefault": false
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Docker Compose Debug",
-      "dependsOn": ["Docker Compose Build", "Docker Compose Up"],
-      "problemMatcher": [],
-      "group": {
-        "kind": "build",
-        "isDefault": false
-      }
-    },
-    {
-      "label": "build and up Catalog API",
-      "dependsOn": ["build Catalog API", "Docker Compose Up"],
-      "problemMatcher": [],
-      "group": {
-        "kind": "build",
-        "isDefault": false
-      }
-    },
-    {
-      "label": "build and up Basket API",
-      "dependsOn": ["build Basket API", "Docker Compose Up"],
-      "problemMatcher": [],
-      "group": {
-        "kind": "build",
-        "isDefault": false
-      }
-    },
-    {
-      "label": "build and up Ordering API",
-      "dependsOn": ["build Ordering API", "Docker Compose Up"],
-      "problemMatcher": [],
-      "group": {
-        "kind": "build",
-        "isDefault": false
-      }
-    },
-    {
-      "label": "build",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "build",
-        "${workspaceFolder}/eshop-microservices.sln",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary;ForceNoAlign"
-      ],
-      "problemMatcher": "$msCompile"
-    },
-    {
-      "label": "publish",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "publish",
-        "${workspaceFolder}/eshop-microservices.sln",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary;ForceNoAlign"
-      ],
-      "problemMatcher": "$msCompile"
-    },
-    {
-      "label": "watch",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "watch",
-        "run",
-        "--project",
-        "${workspaceFolder}/eshop-microservices.sln"
-      ],
-      "problemMatcher": "$msCompile"
-    }
-  ]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/eshop-microservices.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/eshop-microservices.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/eshop-microservices.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build Catalog API",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Services/Catalog/Catalog.API/Catalog.API.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build Basket API",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Services/Basket/Basket.API/Basket.API.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build Ordering API",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Services/Ordering/Ordering.API/Ordering.API.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build YarpApiGateway",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/ApiGateways/YarpApiGateway/YarpApiGateway.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Docker Compose Build",
+            "type": "shell",
+            "command": "docker-compose",
+            "args": [
+                "-f",
+                "docker-compose.yml",
+                "-f",
+                "docker-compose.override.yml",
+                "build"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+            ]
+        },
+        {
+            "label": "Docker Compose Up",
+            "type": "shell",
+            "command": "docker-compose",
+            "args": [
+                "-f",
+                "docker-compose.yml",
+                "-f",
+                "docker-compose.override.yml",
+                "up",
+                "-d"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+            ]
+        },
+        {
+            "label": "Docker Compose Down",
+            "type": "shell",
+            "command": "docker-compose",
+            "args": [
+                "-f",
+                "docker-compose.yml",
+                "-f",
+                "docker-compose.override.yml",
+                "down"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+            ]
+        },
+        {
+            "label": "Remove All Containers",
+            "type": "shell",
+            "command": "docker",
+            "args": [
+                "rm",
+                "$(docker",
+                "ps",
+                "-a",
+                "-q)"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [
+            ]
+        },
+        {
+            "label": "Docker Compose Debug",
+            "dependsOn": [
+                "Docker Compose Build",
+                "Docker Compose Up"
+            ],
+            "problemMatcher": [
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "launch up Catalog API with micro services",
+            "dependsOn": [
+                "build Catalog API",
+                "Docker Compose Up"
+            ],
+            "problemMatcher": [
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "launch up Basket API with micro services",
+            "dependsOn": [
+                "build Basket API",
+                "Docker Compose Up"
+            ],
+            "problemMatcher": [
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "launch up Ordering API with micro services",
+            "dependsOn": [
+                "build Ordering API",
+                "Docker Compose Up"
+            ],
+            "problemMatcher": [
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "launch up YarpApiGateway API with micro services",
+            "dependsOn": [
+                "build YarpApiGateway",
+                "Docker Compose Up"
+            ],
+            "problemMatcher": [
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "type": "docker-build",
+            "label": "docker-build: debug",
+            "dependsOn": [
+                "build"
+            ],
+            "dockerBuild": {
+                "tag": "src:dev",
+                "target": "base",
+                "dockerfile": "${workspaceFolder}/ApiGateways/YarpApiGateway/Dockerfile",
+                "context": "${workspaceFolder}",
+                "pull": true
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/ApiGateways/YarpApiGateway/YarpApiGateway.csproj"
+            }
+        },
+        {
+            "type": "docker-build",
+            "label": "docker-build: release",
+            "dependsOn": [
+                "build"
+            ],
+            "dockerBuild": {
+                "tag": "src:latest",
+                "dockerfile": "${workspaceFolder}/ApiGateways/YarpApiGateway/Dockerfile",
+                "context": "${workspaceFolder}",
+                "platform": {
+                    "os": "linux",
+                    "architecture": "amd64"
+                },
+                "pull": true
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/ApiGateways/YarpApiGateway/YarpApiGateway.csproj"
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "docker-run: debug",
+            "dependsOn": [
+                "docker-build: debug"
+            ],
+            "dockerRun": {
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/ApiGateways/YarpApiGateway/YarpApiGateway.csproj",
+                "enableDebugging": true
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "docker-run: release",
+            "dependsOn": [
+                "docker-build: release"
+            ],
+            "dockerRun": {
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/ApiGateways/YarpApiGateway/YarpApiGateway.csproj"
+            }
+        }
+    ]
 }
