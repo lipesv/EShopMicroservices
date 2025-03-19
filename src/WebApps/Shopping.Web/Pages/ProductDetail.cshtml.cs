@@ -34,7 +34,7 @@ public class ProductDetailModel(ICatalogService catalogService,
             ProductId = productId,
             ProductName = productResponse.Product.Name,
             Price = productResponse.Product.Price,
-            Quantity = 1,
+            Quantity = Quantity,
             Color = "Black"
         });
 
